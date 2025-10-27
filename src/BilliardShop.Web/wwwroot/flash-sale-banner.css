@@ -1,0 +1,125 @@
+.flash-sale-banner {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  z-index: 1;
+}
+
+.flash-sale-banner.flash-sale-banner--full-width {
+  max-width: initial;
+  width: 100%;
+}
+
+.flash-sale-banner__blocks {
+    margin: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;  
+    padding:10px;
+}
+
+.flash-sale-banner__blocks * {
+  overflow-wrap: break-word;
+}
+
+.flash-sale-banner--full-width .flash-sale-banner__blocks {
+  /* 4rem (1.5rem + 2.5rem) margin on left & right */
+  width: calc(100% - 8rem / var(--font-body-scale));
+}
+
+@media screen and (min-width: 750px) {
+  .flash-sale-banner__blocks {
+    max-width: 100%;
+  }
+
+  .flash-sale-banner--full-width .flash-sale-banner__blocks {
+    /* 7.5rem (5rem + 2.5rem) margin on left & right */
+    width: calc(100% - 15rem);
+  }
+}
+@media screen and (max-width: 480px) {
+ .flash-sale-banner--full-width .flash-sale-banner__blocks {
+  width: calc(100% - 4rem / var(--font-body-scale));
+}
+ 
+}
+@media screen and (min-width: 990px) {
+  .flash-sale-banner__blocks {
+    max-width: 100%;
+  }
+}
+
+/* Blocks */
+
+.flash-sale-banner__blocks > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.flash-sale-banner__blocks > * + * {
+  margin-top: 0rem;
+}
+
+.flash-sale-banner__blocks > * + a {
+  margin-top: 3rem;
+}
+
+
+.copy-text {
+	position: relative;
+    background: rgba(var(--color-background));
+    border-radius: 0;
+    display: flex;
+}
+.copy-text input.text {
+	padding: 10px;
+    font-size: var(--font-base-size);
+    color: rgba(var(--color-foreground));
+    border: none;
+    outline: none;
+    width: 130px;
+    background: transparent;
+    font-family: var(--font-heading-family);
+    border-inline-end: 1px dashed #000;
+}
+.copy-text button {
+	padding: 10px;
+    background: none;
+    color: rgba(var(--color-foreground));
+    font-size: var(--font-base-size);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-family: var(--font-heading-family);
+    font-weight: 500;
+}
+ button i.fa.fa-clone{margin-right: 5px;}
+
+.copy-text button:active {
+	background: none;
+}
+.copy-text input.text:focus-visible{
+  outline-offset:none; box-shadow:none;
+}
+.copy-text button:before {
+	content: "Copied";
+	position: absolute;
+	top: 0;
+	right: -80px;
+	background: transparent;
+	padding: 8px 10px;
+	border-radius: 0;
+	font-size: var(--font-base-size);
+	display: none;
+}
+.copy-text.active button:before,
+.copy-text.active button:after {
+	display: block;
+}
+h4.sale-header{ font-weight: 600;}
+@media screen and (max-width: 750px) {
+.flash-sale-banner__blocks{gap:1rem}
+}

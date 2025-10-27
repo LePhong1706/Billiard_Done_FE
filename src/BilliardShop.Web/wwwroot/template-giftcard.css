@@ -1,0 +1,501 @@
+/* Base */
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+a:empty,
+ul:empty,
+dl:empty,
+div:empty,
+section:empty,
+article:empty,
+p:empty,
+h1:empty,
+h2:empty,
+h3:empty,
+h4:empty,
+h5:empty,
+h6:empty {
+  display: none;
+}
+
+html {
+  font-size: calc(var(--font-body-scale) * 62.5%);
+  box-sizing: border-box;
+  height: 100%;
+}
+
+body {
+  color: rgba(var(--color-foreground), 1);
+  background-color: rgb(var(--color-background));
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-columns: 100%;
+  min-height: 100%;
+  margin: 0;
+   font-size: var(--font-base-size);
+  line-height: normal;
+  font-family: var(--font-body-family);
+  font-style: var(--font-body-style);
+  font-weight: var(--font-body-weight);
+}
+
+@media only screen and (min-width: 750px) {
+  body {
+    font-size:  var(--font-base-size);
+    line-height: calc(1 + 0.8 / var(--font-body-scale));
+    padding: 0 5rem;
+  }
+}
+
+::selection {
+  background-color: rgba(var(--color-base-text), 0.2);
+}
+
+.text-body {
+  font-size: var(--font-base-size);
+  line-height: var(--font-body-line-height);
+  font-family: var(--font-body-family);
+  font-style: var(--font-body-style);
+  font-weight: var(--font-body-weight);
+}
+
+h1, .h1, h1 a { font-size: var(--font-h1-size); } 
+h2, .h2, h2 a { font-size: var(--font-h2-size); }
+h3, .h3, h3 a { font-size: var(--font-h3-size); }
+h4, .h4, h4 a { font-size: var(--font-h4-size); }
+h5, .h5, h5 a { font-size: var(--font-h5-size); }
+h6, .h6, h6 a { font-size: var(--font-h6-size); }
+
+@media(max-width:767px) {
+  h1, .h1, h1 a { font-size: calc(.85 * var(--font-h1-size)); }
+  h2, .h2, h2 a { font-size: calc(.85 * var(--font-h2-size)); }
+  h3, .h3, h3 a { font-size: calc(.85 * var(--font-h3-size)); }
+  h4, .h4, h4 a { font-size: calc(.85 * var(--font-h4-size)); }
+  h5, .h5, h5 a { font-size: calc(.9 * var(--font-h5-size)); }
+  h6, .h6, h6 a { font-size: calc(1 * var(--font-h6-size)); }
+}
+@media(max-width:576px) {
+  h1, .h1, h1 a { font-size: calc(.65 * var(--font-h1-size)); }
+  h2, .h2, h2 a { font-size: calc(.65 * var(--font-h2-size)); }
+  h3, .h3, h3 a { font-size: calc(.65 * var(--font-h3-size)); }
+  h4, .h4, h4 a { font-size: calc(.65 * var(--font-h4-size)); }
+  h5, .h5, h5 a { font-size: calc(.8 * var(--font-h5-size)); }
+  h6, .h6, h6 a { font-size: calc(0.9 * var(--font-h6-size)); }
+}
+
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6{
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  color: rgb(var(--color-foreground));
+  line-height:1.3;
+  word-break: break-word;margin:0;
+}
+
+.skip-to-content-link:focus {
+  z-index: 9999;
+  position: inherit;
+  overflow: auto;
+  width: auto;
+  height: auto;
+  clip: auto;
+}
+
+.link {
+  cursor: pointer;
+  display: inline-block;
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+  padding: 0.4rem;
+  font-size:  var(--font-base-size);
+  line-height: 1;
+  text-decoration: underline;
+  color: rgb(var(--color-link));
+}
+
+.link:hover {
+  color: rgb(var(--color-link-hover));
+}
+:root,
+/* .color-background-1 {
+  --color-button: var(--color-base-solid-button-labels);
+  --color-button-text: var(--color-solid-text);
+  --color-hover-button: var(--color-base-outline-button-labels);
+  --color-button-hover-text: var(--color-outline-text);
+  --alpha-button-background: 1;
+  --alpha-button-border: 1;
+}
+.button--secondary {
+  --color-button: var(--color-base-outline-button-labels);
+  --color-button-text: var(--color-outline-text);
+  --color-hover-button: var(--color-base-solid-button-labels);
+  --color-button-hover-text: var(--color-solid-text);
+  --alpha-button-background: 1;
+} */
+.button--primary, .button{
+   --button-color: var(--color-button);
+  --button-color-text: var(--color-button-text); 
+  --color-hover-button:var(--color-secondary-button);
+  --color-button-hover-text:var(--color-secondary-button-text); 
+  --alpha-button-background: 1;
+}
+.button--secondary,
+.button--tertiary {
+  --button-color: var(--color-secondary-button);
+  --button-color-text: var(--color-secondary-button-text); 
+  --color-hover-button:var(--color-button);
+  --color-button-hover-text:var(--color-button-text); 
+  --alpha-button-background: 1;
+}
+
+
+
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  cursor: pointer;
+  text-decoration: none;
+  color: rgb(var(--color-button-text));
+  transition: box-shadow var(--duration-short) ease;
+  -webkit-appearance: none;
+  white-space: nowrap;
+  appearance: none;
+  background-color: rgba(var(--color-button), var(--alpha-button-background));
+  transition: all 0.3s linear;
+  font-family: var(--font-heading-family);
+  font-weight: 500;
+  transition: all var(--duration-default) linear;
+   min-width: calc(8rem + var(--buttons-border-width) * 2);
+  min-height: calc(4rem + var(--buttons-border-width) * 2);
+  font-size: var(--font-base-size);
+  letter-spacing: 0;
+  line-height: normal;
+  text-transform: uppercase;
+  padding: 0 3rem;
+}
+
+.button:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  border-radius: var(--buttons-radius-outset);
+  box-shadow: var(--shadow-horizontal-offset) var(--shadow-vertical-offset)
+    var(--shadow-blur-radius) rgba(var(--color-shadow), var(--shadow-opacity));
+}
+
+.button:after {
+  content: "";
+  position: absolute;
+  top: var(--buttons-border-width);
+  right: var(--buttons-border-width);
+  bottom: var(--buttons-border-width);
+  left: var(--buttons-border-width);
+  z-index: 1;
+  border-radius: var(--buttons-radius);
+  box-shadow: 0 0 0 calc(var(--buttons-border-width) + var(--border-offset))
+      rgba(var(--color-button-text), var(--border-opacity)),
+    0 0 0 var(--buttons-border-width)
+      rgba(var(--color-button), var(--alpha-button-background));
+  transition: box-shadow var(--duration-short) ease;
+}
+
+
+.button::selection {
+  background-color: rgba(var(--color-base-solid-button-labels), 0.3);
+}
+
+.button:hover {
+   background-color: rgba(
+    var(--color-hover-button),
+    var(--alpha-button-background)
+  );
+  color: rgba(var(--color-button-hover-text));
+}
+
+
+
+.button--secondary::selection {
+  background-color: rgba(var(--color-base-outline-button-labels), 0.3);
+}
+
+/* .button--secondary:hover {
+  box-shadow: 0 0 0 0.2rem rgb(var(--color-base-outline-button-labels));
+} */
+
+.gift-card {
+  padding-bottom: 3.4rem;
+}
+
+.gift-card__title {
+  text-align: center;
+  word-break: break-word;
+  padding: 4rem 0 1.7rem;
+}
+
+@media only screen and (min-width: 990px) {
+  .gift-card__title {
+    padding: 6rem 0 2.6rem;
+  }
+}
+
+.gift-card__image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  background-color: rgb(var(--color-base-background-1));
+  margin-bottom: 0.8rem;
+  margin: 0 auto;
+}
+
+@media only screen and (min-width: 750px) {
+  .gift-card__image-wrapper {
+    margin-bottom: 0;
+    width: 40rem;
+  }
+}
+
+.gift-card__image {
+  max-width: 100%;
+  padding: 0 2rem;
+  height: auto;
+}
+
+@media only screen and (min-width: 750px) {
+  .gift-card__image {
+    padding: 0;
+  }
+}
+
+.gift-card__heading {
+  font-weight: 400;
+  margin: 2.5rem 0 1rem;
+}
+
+.gift-card__price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size:  calc(var(--font-h5-size) - 4px);
+  font-weight: 400;
+  letter-spacing: 1px;
+  line-height: calc(1 + 0.5 / var(--font-body-scale));
+  opacity: 0.85;
+}
+
+.gift-card__price > p:first-child {
+  margin-bottom: 1rem;
+}
+
+@media only screen and (min-width: 750px) {
+  .gift-card__price {
+    font-size: var(--font-h5-size);
+  }
+}
+
+.gift-card__label:not(.badge) {
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+.gift-card__number {
+  background-color: transparent;
+  border: none;
+  color: rgb(var(--color-base-text));
+  font-size: calc(var(--font-base-size) + 2px);
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+@media only screen and (min-width: 750px) {
+  .gift-card__number {
+    font-size: calc(var(--font-base-size) + 2px);
+  }
+}
+
+.gift-card__text {
+  margin-bottom: 4rem;
+  opacity: 0.7;
+}
+
+.gift-card__information {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.gift-card__label {
+  font-size: calc(var(--font-base-size) - 4px);
+  letter-spacing: 0.05rem;
+  font-weight: 500;
+  display: inline;
+  margin-left: 1rem;
+}
+
+.badge {
+  border: 1px solid transparent;
+  margin: 1.7rem 0 1rem 1rem;
+  border-radius: 4rem;
+  display: inline-block;
+  font-size: calc(var(--font-base-size) - 4px);
+  letter-spacing: 0.1rem;
+  line-height: 1;
+  padding: 0.6rem 1.3rem;
+  text-align: center;
+  background-color: rgb(var(--color-base-background-1));
+  border-color: rgba(var(--color-base-text), 0.04);
+  color: rgb(var(--color-base-text));
+}
+
+.badge--inverse {
+  background-color: rgb(var(--color-base-text));
+  border-color: rgb(var(--color-base-text));
+  color: rgb(var(--color-base-background-1));
+}
+
+
+
+.gift-card__copy-code {
+  margin-bottom: 2.2rem;
+}
+
+.gift-card__qr-code {
+  margin-top: 3rem;
+}
+
+@media only screen and (min-width: 750px) {
+  .gift-card__qr-code {
+    margin-top: 5rem;
+  }
+}
+
+.gift-card__qr-code img {
+  margin: 0 auto;
+}
+
+.gift_card__apple-wallet {
+  line-height: 0;
+  display: block;
+  margin-bottom: 5rem;
+}
+
+.gift-card__buttons {
+  display: flex;
+  flex-direction: column;
+  max-width: 25rem;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+.gift-card__buttons > .button:first-child {
+  /* display: block; */
+  margin-bottom: 2rem;
+}
+
+/*
+  Focus ring - default (with offset)
+*/
+
+/* Fallback - for browsers that don't support :focus-visible, a fallback is set for :focus */
+*:focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+*:focus-visible {
+  outline: 0.2rem solid rgba(var(--color-base-text), 0.5);
+  outline-offset: 0.3rem;
+  box-shadow: 0 0 0 0.3rem rgb(var(--color-base-background-1)),
+    0 0 0.5rem 0.4rem rgba(var(--color-base-text), 0.3);
+}
+
+/* Fallback - for browsers that don't support :focus-visible, a fallback is set for :focus */
+.focused, .no-js *:focus {
+  outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
+  outline-offset: 0.3rem;
+  box-shadow: 0 0 0 0.3rem rgb(var(--color-background)),
+    0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
+}
+
+.button:focus-visible {
+  box-shadow: 0 0 0 0.1rem rgb(var(--color-base-accent-1)),
+    0 0 0 0.3rem rgb(var(--color-base-background-1)),
+    0 0 0.5rem 0.4rem rgba(var(--color-base-text), 0.3);
+}
+
+/* Negate the fallback side-effect for browsers that support :focus-visible */
+.no-js *:focus:not(:focus-visible) {
+  outline: 0;
+  box-shadow: none;
+}
+
+.button:focus {
+  box-shadow: 0 0 0 0.1rem rgb(var(--color-base-accent-1)),
+    0 0 0 0.3rem rgb(var(--color-base-background-1)),
+    0 0 0.5rem 0.4rem rgba(var(--color-base-text), 0.3);
+}
+
+.button--secondary:focus-visible {
+  box-shadow: 0 0 0 0.1rem rgb(var(--color-base-outline-button-labels)),
+    0 0 0 0.3rem rgb(var(--color-base-background-1)),
+    0 0 0.5rem 0.4rem rgba(var(--color-base-text), 0.3);
+}
+
+.button--secondary:focus {
+  box-shadow: 0 0 0 0.1rem rgb(var(--color-base-outline-button-labels)),
+    0 0 0 0.3rem rgb(var(--color-base-background-1)),
+    0 0 0.5rem 0.4rem rgba(var(--color-base-text), 0.3);
+}
+
+.form__message {
+  align-items: center;
+  display: flex;
+  font-size: calc(var(--font-base-size) - 4px);
+  line-height: 1;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.form__message .icon {
+  flex-shrink: 0;
+  height: 1.3rem;
+  margin-right: 0.5rem;
+  width: 1.3rem;
+}
+
+@media print {
+  .no-print {
+    display: none;
+  }
+}
+
+.gradient {
+  background: rgb(var(--color-base-background-1));
+  background: var(--gradient-base-background-1);
+  background-attachment: fixed;
+}

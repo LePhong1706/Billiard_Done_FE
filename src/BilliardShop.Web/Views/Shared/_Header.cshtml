@@ -1,0 +1,109 @@
+<!-- Header -->
+<header class="header border-bottom-color">
+  <div class="border-bottom-color top-header d-none d-md-block">
+    <div class="b-container">
+      <div
+        class="d-flex justify-content-between align-items-center p-3 border-1 border-start border-end border-primary-color">
+        <ul class="p-0 m-0 d-flex gap-3 gap-lg-5">
+          <li class="list-unstyled">
+            <i class="bi bi-check-circle text-primary-color fs-5 me-2"></i>
+            0799.277.167
+          </li>
+          <li class="list-unstyled">
+            <i class="bi bi-check-circle text-primary-color fs-5 me-2"></i>
+            letrandangphong@gmail.com
+          </li>
+          <li class="list-unstyled">
+            <i class="bi bi-check-circle text-primary-color fs-5 me-2"></i>
+            Mon-Sat: 09.00 am - 06.00 pm
+          </li>
+        </ul>
+        <div class="d-flex gap-2 justify-content-center justify-content-md-start">
+          <a href="https://www.facebook.com/letrandangphong" target="_blank" rel="noopener noreferrer"><i class="bi bi-facebook icon-social"></i></a>
+          <a href="https://www.instagram.com/dphong.170604/ "target="_blank" rel="noopener noreferrer"> <i class="bi bi-instagram icon-social"></i></a>
+          <a href="https://www.tiktok.com/@@dangphong1706" target="_blank" rel="noopener noreferrer"><i class="bi bi-tiktok icon-social"></i></a>
+          <a href="https://www.youtube.com/channel/UCxghzJtWc4zo03Mhh21AsHA" target="_blank" rel="noopener noreferrer"><i class="bi bi-youtube icon-social"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="b-container">
+    <nav class="navbar navbar-expand-lg border-1 border-start border-end border-primary-color py-3 py-lg-1"
+      aria-label="Offcanvas navbar large">
+      <div class="container-fluid">
+        <div class="logo-box">
+          <a class="navbar-brand" href="/"><img src="~/lib/autozen/images/car-shop-logo-V49ANM.png" alt="Main Logo"
+              class="img-fluid"></a>
+        </div>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-start bg-accent-color-2" tabindex="-1" id="offcanvasNavbar"
+          aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header" id="offcanvasNavbarLabel">
+            <div class="logo-box">
+              <a class="navbar-brand" href="/"><img src="~/lib/autozen/images/car-shop-logo-V49ANM.png" alt="Drawer Logo"
+                  class="img-fluid"></a>
+            </div>
+            <button type="button" class="btn-close bg-accent-color-2 p-3" data-bs-dismiss="offcanvas"
+              aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body d-flex flex-row justify-content-start justify-content-lg-end">
+            <ul class="navbar-nav my-lg-4 gap-lg-2 gap-xl-4">
+              <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Index", "Home")">Trang chủ</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Index", "Product")">Sản phẩm</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Về chúng tôi</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Liên hệ</a>
+              </li>
+              @if (User.Identity?.IsAuthenticated == true)
+              {
+                <li class="nav-item">
+                  <a class="nav-link" href="@Url.Action("Index", "Order")">Đơn hàng của tôi</a>
+                </li>
+              }
+            </ul>
+            <div class="mt-1 d-flex gap-2 align-items-center">
+              <a href="@Url.Action("Index", "Cart")" class="btn btn-lg btn-cta-primary d-none d-lg-block">Giỏ hàng</a>
+              @if (User.Identity?.IsAuthenticated == true)
+              {
+                <div class="dropdown d-none d-lg-block">
+                  <button class="btn btn-lg btn-outline-primary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    @User.FindFirst(System.Security.Claims.ClaimTypes.GivenName)?.Value 
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown" style="background-color: #25262B; border: 1px solid #2A2B30;">
+                    <li>
+                      <a class="dropdown-item" href="@Url.Action("Index", "Order")" style="color: #EEEEEE;">
+                        <i class="bi bi-box-seam me-2"></i>Đơn hàng của tôi
+                      </a>
+                    </li>
+                    <li><hr class="dropdown-divider" style="border-color: #2A2B30;"></li>
+                    <li>
+                      <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                        <button type="submit" class="dropdown-item" style="color: #DF3B34;">
+                          <i class="bi bi-box-arrow-right me-2"></i>Đăng xuất
+                        </button>
+                      </form>
+                    </li>
+                  </ul>
+                </div>
+              }
+              else
+              {
+                <a href="@Url.Action("Login", "Account")" class="btn btn-lg btn-outline-primary d-none d-lg-block">Đăng nhập</a>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- #header end -->

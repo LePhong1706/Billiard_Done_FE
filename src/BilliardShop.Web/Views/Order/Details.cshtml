@@ -1,0 +1,316 @@
+@model OrderDetailViewModel
+@{
+    ViewData["Title"] = "Chi tiết đơn hàng #" + Model.OrderNumber;
+}
+
+@section Styles {
+    <style>
+        body {
+            background-color: #1E1F23;
+            color: #EEEEEE;
+        }
+
+        .order-detail-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .back-link {
+            color: #DF3B34;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .back-link:hover {
+            color: #C22F28;
+        }
+
+        .page-title {
+            color: #FFFFFF;
+            font-weight: 700;
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        .detail-card {
+            background-color: #25262B;
+            border: 1px solid #2A2B30;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            color: #FFFFFF;
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #2A2B30;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            color: #808080;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .info-value {
+            color: #FFFFFF;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .product-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #2A2B30;
+        }
+
+        .product-item:last-child {
+            border-bottom: none;
+        }
+
+        .product-info {
+            flex: 1;
+        }
+
+        .product-name {
+            color: #FFFFFF;
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .product-code {
+            color: #808080;
+            font-size: 13px;
+        }
+
+        .product-quantity {
+            color: #CCCCCC;
+            margin: 0 30px;
+        }
+
+        .product-price {
+            color: #DF3B34;
+            font-weight: 700;
+            font-size: 16px;
+            min-width: 120px;
+            text-align: right;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            color: #CCCCCC;
+        }
+
+        .summary-row.total {
+            border-top: 2px solid #2A2B30;
+            padding-top: 15px;
+            margin-top: 10px;
+        }
+
+        .summary-row.total .summary-label {
+            color: #FFFFFF;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .summary-row.total .summary-value {
+            color: #DF3B34;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .badge {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-pending {
+            background-color: rgba(251, 191, 36, 0.2);
+            color: #FBBF24;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .badge-processing {
+            background-color: rgba(59, 130, 246, 0.2);
+            color: #3B82F6;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .badge-completed {
+            background-color: rgba(34, 197, 94, 0.2);
+            color: #22C55E;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .badge-paid {
+            background-color: rgba(34, 197, 94, 0.2);
+            color: #22C55E;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .badge-unpaid {
+            background-color: rgba(251, 191, 36, 0.2);
+            color: #FBBF24;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+    </style>
+}
+
+<div class="order-detail-container">
+    <a href="@Url.Action("Index")" class="back-link">← Quay lại danh sách đơn hàng</a>
+
+    <h1 class="page-title">Đơn hàng #@Model.OrderNumber</h1>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="detail-card">
+                <h2 class="card-title">Sản phẩm đã đặt</h2>
+                @foreach (var item in Model.Items)
+                {
+                    <div class="product-item">
+                        <div class="product-info">
+                            <div class="product-name">@item.ProductName</div>
+                            <div class="product-code">Mã: @item.ProductCode</div>
+                        </div>
+                        <div class="product-quantity">
+                            x @item.Quantity
+                        </div>
+                        <div class="product-price">
+                            @item.TotalPrice.ToString("N0") ₫
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="detail-card">
+                <h2 class="card-title">Thông tin giao hàng</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Người nhận</span>
+                        <span class="info-value">@Model.TenNguoiNhan</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Số điện thoại</span>
+                        <span class="info-value">@Model.SoDienThoai</span>
+                    </div>
+                    <div class="info-item" style="grid-column: 1 / -1;">
+                        <span class="info-label">Địa chỉ giao hàng</span>
+                        <span class="info-value">@Model.DiaChiGiaoHang</span>
+                    </div>
+                    @if (!string.IsNullOrEmpty(Model.GhiChu))
+                    {
+                        <div class="info-item" style="grid-column: 1 / -1;">
+                            <span class="info-label">Ghi chú</span>
+                            <span class="info-value">@Model.GhiChu</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="detail-card">
+                <h2 class="card-title">Thông tin đơn hàng</h2>
+                <div class="info-item mb-3">
+                    <span class="info-label">Ngày đặt hàng</span>
+                    <span class="info-value">@Model.OrderDate.ToString("dd/MM/yyyy HH:mm")</span>
+                </div>
+                <div class="info-item mb-3">
+                    <span class="info-label">Trạng thái đơn hàng</span>
+                    <span>
+                        @if (Model.Status.Contains("Chờ"))
+                        {
+                            <span class="badge badge-pending">@Model.Status</span>
+                        }
+                        else if (Model.Status.Contains("Đang"))
+                        {
+                            <span class="badge badge-processing">@Model.Status</span>
+                        }
+                        else if (Model.Status.Contains("Đã giao"))
+                        {
+                            <span class="badge badge-completed">@Model.Status</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-pending">@Model.Status</span>
+                        }
+                    </span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Trạng thái thanh toán</span>
+                    <span>
+                        @if (Model.PaymentStatus.Contains("Đã thanh toán"))
+                        {
+                            <span class="badge badge-paid">@Model.PaymentStatus</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-unpaid">@Model.PaymentStatus</span>
+                        }
+                    </span>
+                </div>
+            </div>
+
+            <div class="detail-card">
+                <h2 class="card-title">Tổng quan thanh toán</h2>
+                <div class="summary-row">
+                    <span class="summary-label">Tổng tiền hàng:</span>
+                    <span class="summary-value">@Model.TongTienHang.ToString("N0") ₫</span>
+                </div>
+                @if (Model.TienGiamGia > 0)
+                {
+                    <div class="summary-row">
+                        <span class="summary-label">Giảm giá:</span>
+                        <span class="summary-value" style="color: #22C55E;">-@Model.TienGiamGia.ToString("N0") ₫</span>
+                    </div>
+                }
+                <div class="summary-row">
+                    <span class="summary-label">Phí vận chuyển:</span>
+                    <span class="summary-value">
+                        @if (Model.PhiVanChuyen == 0)
+                        {
+                            <span style="color: #22C55E;">Miễn phí</span>
+                        }
+                        else
+                        {
+                            @Model.PhiVanChuyen.ToString("N0") @:₫
+                        }
+                    </span>
+                </div>
+                <div class="summary-row total">
+                    <span class="summary-label">Tổng thanh toán:</span>
+                    <span class="summary-value">@Model.TongThanhToan.ToString("N0") ₫</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

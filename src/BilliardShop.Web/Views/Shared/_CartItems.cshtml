@@ -1,0 +1,57 @@
+
+@model BilliardShop.Web.Models.CartViewModel
+
+<div class="drawer__cart-items-wrapper">
+    <table class="cart-items" role="table">
+        <thead role="rowgroup">
+            <tr role="row">
+                <th id="CartDrawer-ColumnProductImage" role="columnheader"><span class="visually-hidden">Product image</span></th>
+                <th id="CartDrawer-ColumnProduct" class="caption-with-letter-spacing" scope="col" role="columnheader">Product</th>
+                <th id="CartDrawer-ColumnTotal" class="right caption-with-letter-spacing" scope="col" role="columnheader">Total</th>
+                <th id="CartDrawer-ColumnQuantity" role="columnheader"><span class="visually-hidden">Quantity</span></th>
+            </tr>
+        </thead>
+        <tbody role="rowgroup">
+            @foreach (var item in Model.Items)
+            {
+                <tr id="CartDrawer-Item-@item.GioHangId" class="cart-item" role="row" data-id="@item.SanPhamId">
+                    <td class="cart-item__media" role="cell" headers="CartDrawer-ColumnProductImage">
+                        @if (!string.IsNullOrEmpty(item.HinhAnhUrl))
+                        {
+                            <a href="/product/@item.DuongDanSanPham" class="cart-item__link" tabindex="-1" aria-hidden="true"> </a>
+                            <img class="cart-item__image" src="@item.HinhAnhUrl" alt="@item.TenSanPham" loading="lazy" width="150" height="150">
+                        }
+                    </td>
+                    <td class="cart-item__details" role="cell" headers="CartDrawer-ColumnProduct">
+                        <a href="/product/@item.DuongDanSanPham" class="cart-item__name h4 break">@item.TenSanPham</a>
+                        <div class="cart-item__totals right" role="cell" headers="CartDrawer-ColumnTotal">
+                            <div class="cart-item__price-wrapper">
+                                <span class="price price--end">@item.ThanhTien.ToString("C")</span>
+                            </div>
+                        </div>
+                        <div class="cart-item__quantity" role="cell" headers="CartDrawer-ColumnQuantity">
+                            <div class="cart-item__quantity-wrapper">
+                                <quantity-input class="quantity">
+                                    <button class="quantity__button no-js-hidden" name="minus" type="button">
+                                        <span class="visually-hidden">Decrease quantity</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-minus" fill="none" viewBox="0 0 10 2"><path fill-rule="evenodd" clip-rule="evenodd" d="M.5 1a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 0 1H1A.5.5 0 0 1 .5 1z" fill="currentColor"></path></svg>
+                                    </button>
+                                    <input class="quantity__input" type="number" name="updates[]" value="@item.SoLuong" min="0" aria-label="Quantity" id="Drawer-quantity-@item.GioHangId" data-index="@item.GioHangId">
+                                    <button class="quantity__button no-js-hidden" name="plus" type="button">
+                                        <span class="visually-hidden">Increase quantity</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus" fill="none" viewBox="0 0 10 10"><path fill-rule="evenodd" clip-rule="evenodd" d="M1 4.51a.5.5 0 0 0 0 1h3.5l.01 3.5a.5.5 0 0 0 1-.01V5.51H9a.5.5 0 0 0 0-1H5.51l-.01-3.5a.5.5 0 0 0-1 .01v3.5H1z" fill="currentColor"></path></svg>
+                                    </button>
+                                </quantity-input>
+                            </div>
+                            <cart-remove-button id="CartDrawer-Remove-@item.GioHangId" data-index="@item.GioHangId">
+                                <button class="button button--tertiary" aria-label="Remove @item.TenSanPham">
+                                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" fill="none" viewBox="0 0 18 17"><path d="M.865 15.978a.5.5 0 0 0 .707.707l7.433-7.431 7.575 7.575a.5.5 0 0 0 .707-.707L9.272 8.54l7.432-7.432a.5.5 0 0 0-.707-.707L8.565 7.833.865.132a.5.5 0 0 0-.707.707l7.7 7.7-7.7 7.7z" fill="currentColor"></path></svg>
+                                </button>
+                            </cart-remove-button>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

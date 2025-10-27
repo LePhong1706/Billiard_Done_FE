@@ -1,0 +1,280 @@
+@model BilliardShop.Web.Models.ProductDetailViewModel
+@{
+    ViewData["Title"] = Model.Product.TenSanPham;
+}
+
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+            <li class="breadcrumb-item">
+                <a asp-controller="Product" asp-action="Index" asp-route-categorySlug="@Model.Product.DanhMuc.DuongDanDanhMuc">
+                    @Model.Product.DanhMuc.TenDanhMuc
+                </a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">@Model.Product.TenSanPham</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <!-- Product Images -->
+        <div class="col-md-6">
+            <div class="product-images">
+                @if (Model.Product.HinhAnhs.Any())
+                {
+                    <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            @for (int i = 0; i < Model.Product.HinhAnhs.Count; i++)
+                            {
+                                var image = Model.Product.HinhAnhs.ElementAt(i);
+                                <div class="carousel-item @(i == 0 ? "active" : "")">
+                                    <img src="@image.DuongDanHinhAnh" class="d-block w-100" alt="@Model.Product.TenSanPham" style="max-height: 500px; object-fit: contain;">
+                                </div>
+                            }
+                        </div>
+                        @if (Model.Product.HinhAnhs.Count > 1)
+                        {
+                            <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <img src="/images/no-image.png" class="img-fluid" alt="No image">
+                }
+            </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="col-md-6">
+            <h1 class="mb-3">@Model.Product.TenSanPham</h1>
+
+            @if (Model.Product.ThuongHieu != null)
+            {
+                <p class="text-muted">Thương hiệu: <strong>@Model.Product.ThuongHieu.TenThuongHieu</strong></p>
+            }
+
+            <p class="text-muted">Mã sản phẩm: <strong>@Model.Product.MaCodeSanPham</strong></p>
+
+            <div class="price-section mb-4">
+                @if (Model.Product.GiaKhuyenMai.HasValue)
+                {
+                    <h2 class="text-danger">@Model.Product.GiaKhuyenMai.Value.ToString("N0") đ</h2>
+                    <p class="text-muted text-decoration-line-through">@Model.Product.GiaGoc.ToString("N0") đ</p>
+                    <span class="badge bg-danger">Tiết kiệm @((Model.Product.GiaGoc - Model.Product.GiaKhuyenMai.Value).ToString("N0")) đ</span>
+                }
+                else
+                {
+                    <h2>@Model.Product.GiaGoc.ToString("N0") đ</h2>
+                }
+            </div>
+
+            @if (!string.IsNullOrEmpty(Model.Product.MoTaNgan))
+            {
+                <div class="product-description mb-4">
+                    <p>@Model.Product.MoTaNgan</p>
+                </div>
+            }
+
+            <!-- Product Attributes -->
+            @if (!string.IsNullOrEmpty(Model.Product.MauSac) || !string.IsNullOrEmpty(Model.Product.KichCo) ||
+                 !string.IsNullOrEmpty(Model.Product.ChatLieu) || !string.IsNullOrEmpty(Model.Product.KichThuoc))
+            {
+                <div class="product-attributes mb-4">
+                    <h5>Thông số:</h5>
+                    <ul class="list-unstyled">
+                        @if (!string.IsNullOrEmpty(Model.Product.MauSac))
+                        {
+                            <li><strong>Màu sắc:</strong> @Model.Product.MauSac</li>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.Product.KichCo))
+                        {
+                            <li><strong>Kích cỡ:</strong> @Model.Product.KichCo</li>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.Product.ChatLieu))
+                        {
+                            <li><strong>Chất liệu:</strong> @Model.Product.ChatLieu</li>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.Product.KichThuoc))
+                        {
+                            <li><strong>Kích thước:</strong> @Model.Product.KichThuoc</li>
+                        }
+                        @if (Model.Product.TrongLuong.HasValue)
+                        {
+                            <li><strong>Trọng lượng:</strong> @Model.Product.TrongLuong.Value kg</li>
+                        }
+                    </ul>
+                </div>
+            }
+
+            <!-- Stock Status -->
+            <div class="stock-status mb-4">
+                @if (Model.IsInStock)
+                {
+                    <p class="text-success"><i class="bi bi-check-circle"></i> Còn hàng (@Model.Product.SoLuongTonKho sản phẩm)</p>
+                }
+                else
+                {
+                    <p class="text-danger"><i class="bi bi-x-circle"></i> Hết hàng</p>
+                }
+            </div>
+
+            <!-- Add to Cart -->
+            @if (Model.IsInStock)
+            {
+                <form id="addToCartForm" class="mb-4">
+                    <input type="hidden" name="productId" value="@Model.Product.Id" id="productId" />
+                    <div class="input-group mb-3" style="max-width: 200px;">
+                        <button class="btn btn-outline-secondary" type="button" id="decreaseQty">-</button>
+                        <input type="number" class="form-control text-center" name="quantity" value="1" min="1" max="@Model.Product.SoLuongTonKho" id="quantity">
+                        <button class="btn btn-outline-secondary" type="button" id="increaseQty">+</button>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg w-100">
+                        <i class="bi bi-cart-plus"></i> Thêm vào giỏ hàng
+                    </button>
+                </form>
+            }
+        </div>
+    </div>
+
+    <!-- Product Details Tabs -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <ul class="nav nav-tabs" id="productTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab">
+                        Mô tả chi tiết
+                    </button>
+                </li>
+                @if (Model.Product.DanhGias.Any())
+                {
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab">
+                            Đánh giá (@Model.Product.DanhGias.Count)
+                        </button>
+                    </li>
+                }
+            </ul>
+            <div class="tab-content p-4 border border-top-0" id="productTabsContent">
+                <div class="tab-pane fade show active" id="description" role="tabpanel">
+                    @if (!string.IsNullOrEmpty(Model.Product.MoTaChiTiet))
+                    {
+                        @Html.Raw(Model.Product.MoTaChiTiet)
+                    }
+                    else
+                    {
+                        <p class="text-muted">Chưa có mô tả chi tiết cho sản phẩm này.</p>
+                    }
+                </div>
+                @if (Model.Product.DanhGias.Any())
+                {
+                    <div class="tab-pane fade" id="reviews" role="tabpanel">
+                        @foreach (var review in Model.Product.DanhGias.OrderByDescending(r => r.NgayTao))
+                        {
+                            <div class="review-item mb-3 pb-3 border-bottom">
+                                <div class="d-flex justify-content-between">
+                                    <h6>@(review.NguoiDung != null ? $"{review.NguoiDung.Ho} {review.NguoiDung.Ten}" : "Khách hàng")</h6>
+                                    <small class="text-muted">@review.NgayTao.ToString("dd/MM/yyyy")</small>
+                                </div>
+                                <div class="rating mb-2">
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        <i class="bi bi-star@(i <= review.DiemDanhGia ? "-fill text-warning" : "")"></i>
+                                    }
+                                </div>
+                                @if (!string.IsNullOrEmpty(review.TieuDe))
+                                {
+                                    <h6>@review.TieuDe</h6>
+                                }
+                                <p>@review.NoiDungDanhGia</p>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Related Products -->
+    @if (Model.RelatedProducts.Any())
+    {
+        <div class="row mt-5">
+            <div class="col-12">
+                <h3 class="mb-4">Sản phẩm liên quan</h3>
+                <div class="row">
+                    @foreach (var relatedProduct in Model.RelatedProducts)
+                    {
+                        <div class="col-md-3 col-sm-6 mb-4">
+                            <div class="card product-card h-100">
+                                <a asp-controller="Product" asp-action="Details" asp-route-slug="@relatedProduct.DuongDanSanPham">
+                                    @if (relatedProduct.HinhAnhs.Any())
+                                    {
+                                        <img src="@relatedProduct.HinhAnhs.First().DuongDanHinhAnh" class="card-img-top" alt="@relatedProduct.TenSanPham" style="height: 200px; object-fit: cover;">
+                                    }
+                                    else
+                                    {
+                                        <img src="/images/no-image.png" class="card-img-top" alt="No image" style="height: 200px; object-fit: cover;">
+                                    }
+                                </a>
+                                <div class="card-body">
+                                    <h6 class="card-title">
+                                        <a asp-controller="Product" asp-action="Details" asp-route-slug="@relatedProduct.DuongDanSanPham" class="text-decoration-none text-dark">
+                                            @relatedProduct.TenSanPham
+                                        </a>
+                                    </h6>
+                                    <div class="price-section">
+                                        @if (relatedProduct.GiaKhuyenMai.HasValue)
+                                        {
+                                            <span class="text-danger fw-bold">@relatedProduct.GiaKhuyenMai.Value.ToString("N0") đ</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="fw-bold">@relatedProduct.GiaGoc.ToString("N0") đ</span>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script src="~/js/site.js"></script>
+    <script>
+        document.getElementById('increaseQty').addEventListener('click', function() {
+            var qty = document.getElementById('quantity');
+            var max = parseInt(qty.max);
+            var current = parseInt(qty.value);
+            if (current < max) {
+                qty.value = current + 1;
+            }
+        });
+
+        document.getElementById('decreaseQty').addEventListener('click', function() {
+            var qty = document.getElementById('quantity');
+            var current = parseInt(qty.value);
+            if (current > 1) {
+                qty.value = current - 1;
+            }
+        });
+
+        // Handle add to cart form submission
+        document.getElementById('addToCartForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var productId = parseInt(document.getElementById('productId').value);
+            var quantity = parseInt(document.getElementById('quantity').value);
+            addToCart(productId, quantity);
+        });
+    </script>
+}

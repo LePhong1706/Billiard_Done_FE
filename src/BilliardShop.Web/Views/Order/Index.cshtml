@@ -1,0 +1,293 @@
+@model List<OrderHistoryViewModel>
+@{
+    ViewData["Title"] = "Đơn hàng của tôi";
+}
+
+@section Styles {
+    <style>
+        body {
+            background-color: #1E1F23;
+            color: #EEEEEE;
+        }
+
+        .orders-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .page-title {
+            color: #FFFFFF;
+            font-weight: 700;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            color: #808080;
+            margin-bottom: 30px;
+        }
+
+        .order-card {
+            background-color: #25262B;
+            border: 1px solid #2A2B30;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .order-card:hover {
+            border-color: #DF3B34;
+            box-shadow: 0 5px 20px rgba(223, 59, 52, 0.2);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #2A2B30;
+        }
+
+        .order-number {
+            font-size: 18px;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+
+        .order-date {
+            color: #808080;
+            font-size: 14px;
+        }
+
+        .order-body {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .order-info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            color: #808080;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            color: #FFFFFF;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .badge {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-pending {
+            background-color: rgba(251, 191, 36, 0.2);
+            color: #FBB F24;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .badge-processing {
+            background-color: rgba(59, 130, 246, 0.2);
+            color: #3B82F6;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .badge-completed {
+            background-color: rgba(34, 197, 94, 0.2);
+            color: #22C55E;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .badge-cancelled {
+            background-color: rgba(239, 68, 68, 0.2);
+            color: #EF4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .badge-paid {
+            background-color: rgba(34, 197, 94, 0.2);
+            color: #22C55E;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .badge-unpaid {
+            background-color: rgba(251, 191, 36, 0.2);
+            color: #FBBF24;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .btn-view-detail {
+            background-color: #DF3B34;
+            color: #FFFFFF;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+            text-align: center;
+            border: none;
+        }
+
+        .btn-view-detail:hover {
+            background-color: #C22F28;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(223, 59, 52, 0.4);
+            color: #FFFFFF;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 80px 20px;
+            background-color: #25262B;
+            border-radius: 12px;
+            border: 1px solid #2A2B30;
+        }
+
+        .empty-state-icon {
+            font-size: 64px;
+            color: #808080;
+            margin-bottom: 20px;
+        }
+
+        .empty-state-title {
+            color: #FFFFFF;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .empty-state-text {
+            color: #808080;
+            margin-bottom: 30px;
+        }
+
+        .btn-primary {
+            background-color: #DF3B34;
+            color: #FFFFFF;
+            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background-color: #C22F28;
+            color: #FFFFFF;
+        }
+
+        @@media (max-width: 768px) {
+            .order-body {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .order-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+}
+
+<div class="orders-container">
+    <h1 class="page-title">Đơn hàng của tôi</h1>
+    <p class="page-subtitle">Quản lý và theo dõi các đơn hàng của bạn</p>
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="empty-state">
+            <div class="empty-state-icon">📦</div>
+            <h2 class="empty-state-title">Chưa có đơn hàng nào</h2>
+            <p class="empty-state-text">Bạn chưa đặt đơn hàng nào. Hãy bắt đầu mua sắm ngay!</p>
+            <a href="@Url.Action("Index", "Product")" class="btn-primary">Mua sắm ngay</a>
+        </div>
+    }
+    else
+    {
+        @foreach (var order in Model)
+        {
+            <div class="order-card">
+                <div class="order-header">
+                    <div>
+                        <div class="order-number">Đơn hàng #@order.OrderNumber</div>
+                        <div class="order-date">Đặt ngày @order.OrderDate.ToString("dd/MM/yyyy HH:mm")</div>
+                    </div>
+                    <div>
+                        <a href="@Url.Action("Details", new { id = order.OrderId })" class="btn-view-detail">
+                            Xem chi tiết
+                        </a>
+                    </div>
+                </div>
+
+                <div class="order-body">
+                    <div class="order-info-item">
+                        <span class="info-label">Trạng thái đơn hàng</span>
+                        <span>
+                            @if (order.Status.Contains("Chờ"))
+                            {
+                                <span class="badge badge-pending">@order.Status</span>
+                            }
+                            else if (order.Status.Contains("Đang"))
+                            {
+                                <span class="badge badge-processing">@order.Status</span>
+                            }
+                            else if (order.Status.Contains("Đã giao"))
+                            {
+                                <span class="badge badge-completed">@order.Status</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-cancelled">@order.Status</span>
+                            }
+                        </span>
+                    </div>
+
+                    <div class="order-info-item">
+                        <span class="info-label">Thanh toán</span>
+                        <span>
+                            @if (order.PaymentStatus.Contains("Đã thanh toán"))
+                            {
+                                <span class="badge badge-paid">@order.PaymentStatus</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-unpaid">@order.PaymentStatus</span>
+                            }
+                        </span>
+                    </div>
+
+                    <div class="order-info-item">
+                        <span class="info-label">Số lượng sản phẩm</span>
+                        <span class="info-value">@order.ItemCount sản phẩm</span>
+                    </div>
+
+                    <div class="order-info-item">
+                        <span class="info-label">Tổng tiền</span>
+                        <span class="info-value" style="color: #DF3B34;">@order.TotalAmount.ToString("N0") ₫</span>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@ViewData["Title"] - Billiard Shop</title>
+  <link rel="icon" href="~/lib/autozen/favicon.ico" type="image/x-icon">
+  <!-- Animation On Scroll (AOS) -->
+  <link rel="stylesheet" href="~/lib/autozen/css/vendor/aos.css" asp-append-version="true">
+  <!-- Bootstrap Icons CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Slick CSS -->
+  <link rel="stylesheet" href="~/lib/autozen/css/vendor/slick.css" asp-append-version="true">
+  <!-- FANCYBOX CSS  -->
+  <link rel="stylesheet" href="~/lib/autozen/css/vendor/fancybox.css" asp-append-version="true">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="~/lib/autozen/css/style.css" asp-append-version="true">
+  @await RenderSectionAsync("Styles", required: false)
+</head>
+
+<body>
+  
+  <partial name="_Header" />
+
+  <!-- Main Content -->
+  <main>
+    @RenderBody()
+  </main>
+  <!-- End Main Content -->
+
+  <partial name="_Footer" />
+
+  <!-- Scripts -->
+  <!-- jQuery -->
+  <script src="~/lib/autozen/js/vendor/jquery.min.js" asp-append-version="true"></script>
+  <!-- Animation On Scroll (AOS) -->
+  <script src="~/lib/autozen/js/vendor/aos.js" asp-append-version="true"></script>
+  <!-- Slick JS -->
+  <script src="~/lib/autozen/js/vendor/slick.min.js" asp-append-version="true"></script>
+  <!-- FANCY BOX -->
+  <script src="~/lib/autozen/js/vendor/fancybox.umd.js" asp-append-version="true"></script>
+  <!-- Bootstrap JS -->
+  <script src="~/lib/autozen/js/vendor/bootstrap.bundle.min.js" asp-append-version="true"></script>
+  <!-- Custom JS -->
+  <script src="~/lib/autozen/js/script-counter.js" asp-append-version="true"></script>
+  <script src="~/lib/autozen/js/submit-form.js" asp-append-version="true"></script>
+  <script src="~/lib/autozen/js/script.js" asp-append-version="true"></script>
+  <!-- End Scripts -->
+  @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

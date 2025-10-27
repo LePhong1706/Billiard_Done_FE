@@ -1,0 +1,266 @@
+.shopify-section.fancy-horizontal-tabs .faq-tab-content .tab-content {
+  margin-top: 10px;
+}
+
+.shopify-section.fancy-horizontal-tabs .faq-tab-content .nav-pills.text-center {
+  justify-content: center;
+}
+
+.shopify-section.fancy-horizontal-tabs .faq-tab-content .nav-pills .nav-item {
+  margin-bottom: 0rem
+}
+
+.faq-template-3 .faq-tab-content .dt-sc-section-wrapper {
+  display: flex;
+}
+
+.faq-template-3 .faq-tab-content .dt-sc-section-wrapper .page-full-width.page-full-width_spacing .row {
+  margin: 0;
+  padding: 0;
+}
+
+.faq-template-3 .faq-tab-content .dt-sc-section-wrapper .page-full-width {
+  flex-basis: 70%;
+}
+
+.faq-template-3 .faq-tab-content .dt-sc-section-wrapper form {
+  height: fit-content;
+  display: block;
+  margin: 0;
+  position: sticky;
+  border-radius: 0;
+  top: 3rem;
+  margin-top: 0;
+  width: var(--sidebar-width);
+  max-width: 100%;
+  padding: 30px;
+  border: 1px solid rgba(var(--color-border), .15);
+}
+.faq-template-3 .faq-tab-content .dt-sc-section-wrapper form .contact__fields-heading {
+    margin-top: 3.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.faq-template-3 .faq-tab-content .dt-sc-section-wrapper form img {
+  max-width: 100%;
+  object-fit: contain;
+  height: auto;
+  width: auto;
+  border: 1px solid rgba(var(--color-border), .15);
+  padding-left: 0px;
+}
+
+.faq-template-3 .faq-tab-content .dt-sc-section-wrapper form .field__input {
+  margin-top: 15px;
+}
+
+.faq-template-3 .faq-tab-content .dt-sc-section-wrapper form .field__input:focus {
+  box-shadow: none;
+}
+
+.shopify-section.fancy-horizontal-tabs #myTabContent .card {
+  border: 0.1rem solid rgb(var(--color-border), 0.15);
+  border-radius: 0;
+  padding: 3rem;
+}
+
+.faq-template-3 .faq-tab-content .dt-sc-section-wrapper form .contact__button {
+  display: flex;
+  justify-content: center;
+}
+
+.faq-template-3 .faq-tab-content .dt-sc-section-wrapper form .contact__button .button {
+  width: 100%;
+  margin-top: 15px;
+  display: block;
+}
+
+.item.heading.tab-pane {
+  height: 0;
+  visibility: hidden;
+  opacity: 0;
+  display: none;
+}
+
+.item.heading.tab-pane.active {
+  height: auto;
+  visibility: visible;
+  opacity: 1;
+  display: block;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+.text-left {
+  text-align: left;
+  justify-content: flex-start;
+}
+
+.text-right {
+  text-align: right;
+  justify-content: flex-end;
+}
+
+.text-center {
+  text-align: center;
+  justify-content: flex-center;
+}
+
+.shopify-section.fancy-horizontal-tabs .faq-tab-content .btn.focus,
+.shopify-section.fancy-horizontal-tabs .faq-tab-content .btn:focus {
+  box-shadow: none;
+}
+
+.shopify-section.fancy-horizontal-tabs .faq-tab-content .card .answer {
+  display: none;
+}
+
+.shopify-section.fancy-horizontal-tabs .faq-tab-content .shadow-sm {
+  box-shadow: 0px 14px 15px 0px rgba(0, 0, 0, 0.05) !important;
+}
+
+.shopify-section.fancy-horizontal-tabs .faq-tab-content h4:empty {
+  display: none;
+}
+
+.shopify-section.fancy-horizontal-tabs #myTabContent {
+  width: 100%;
+  padding: 60px 0 0 0px;
+}
+
+.shopify-section.fancy-horizontal-tabs .faq-tab-content .card:last-child {
+  margin-bottom: 0 !important;
+}
+
+.shopify-section.fancy-horizontal-tabs .faq-tab-content .card-body {
+  padding: 0;
+  margin-top: 20px;
+  text-align: start;
+}
+
+.shopify-section.fancy-horizontal-tabs .faq-tab-content .card {
+  border: none;
+  overflow: hidden;
+}
+
+.shopify-section.fancy-horizontal-tabs .faq-tab-content .tab-pane>.card.last {
+  margin-bottom: 50px !important;
+}
+
+.shopify-section.fancy-horizontal-tabs .faq-tab-content .card-header {
+  padding: 0;
+  margin-bottom: 0rem;
+  background: none;
+}
+
+.shopify-section.fancy-horizontal-tabs .faq-tab-content .card-header button {
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  background: inherit;
+}
+
+.shopify-section.fancy-horizontal-tabs .faq-tab-content .card-header button>span {
+  width: 100%;
+  float: left;
+  position: relative;
+}
+
+.shopify-section.fancy-horizontal-tabs #myTabContent .card {
+  margin-bottom: 0;
+}
+
+.shopify-section.fancy-horizontal-tabs #myTabContent .card+.card {
+  border-top: 0;
+}
+
+.shopify-section.fancy-horizontal-tabs .faq-tab-content .card-header button span p {
+  margin-bottom: 0;
+}
+
+.faq-template-3 .faq-tab-content .dt-sc-section-wrapper .page-width .faq-tab-content-wrappers .dt-sc-faqs .heading-wrappers {
+    margin-bottom: 2.6rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .faq-template-3 .faq-tab-content .dt-sc-section-wrapper .page-full-width {
+    flex-basis: 65%;
+  }
+
+  .faq-template-3 .faq-tab-content .dt-sc-section-wrapper form {
+    width: 70%;
+    flex-basis: 35%;
+  }
+
+  .faq-template-3 .faq-tab-content .dt-sc-section-wrapper {
+    column-gap: 60px;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .faq-template-3 .faq-tab-content .dt-sc-section-wrapper form {
+    margin: 0 auto;
+    margin-top: 5rem;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .faq-template-3 .faq-tab-content .dt-sc-section-wrapper {
+    flex-direction: column;
+  }
+
+  .faq-template-3 .faq-tab-content .dt-sc-section-wrapper .page-full-width {
+    flex-basis: 100%;
+  }
+
+  .faq-template-3 .faq-tab-content .dt-sc-section-wrapper form {
+    width: 80%;
+    flex-basis: 80%;
+    margin: auto;
+    margin-top: 5rem;
+  }
+
+  .shopify-section.fancy-horizontal-tabs #myTabContent .card {
+    padding: 25px;
+  }
+  .faq-template-3 .faq-tab-content .dt-sc-section-wrapper>.page-width{
+        padding: 0 .5rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .faq-template-3 .faq-tab-content .dt-sc-section-wrapper form {
+    width: 100%;
+    flex-basis: 100%;
+    margin: auto;
+    margin-top: 2.5rem;
+    padding: 25px;
+  }
+
+  .shopify-section.fancy-horizontal-tabs .faq-tab-content .tab-content {
+    margin-top: 10px;
+  }
+
+}
+
+@media screen and (min-width: 1200px) {
+  .faq-template-3 .faq-tab-content .dt-sc-section-wrapper .page-width {
+    gap: 50px;
+    display: flex;
+    max-width: 100%;
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .shopify-section.fancy-horizontal-tabs .nav-pills .nav-link,.shopify-section.fancy-horizontal-tabs .faq-tab-content .nav-pills .nav-item{
+    width:100%;
+  }
+}

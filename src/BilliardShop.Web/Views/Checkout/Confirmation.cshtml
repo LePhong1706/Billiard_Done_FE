@@ -1,0 +1,213 @@
+@model OrderConfirmationViewModel
+@{
+    ViewData["Title"] = "Xác nhận đơn hàng";
+}
+
+@section Styles {
+    <style>
+        body {
+            background-color: #1E1F23;
+            color: #EEEEEE;
+        }
+
+        .confirmation-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .confirmation-box {
+            background-color: #25262B;
+            border: 1px solid #2A2B30;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .confirmation-box .icon {
+            font-size: 4rem;
+            color: #DF3B34;
+        }
+
+        .confirmation-box h2 {
+            color: #FFFFFF;
+            font-weight: 700;
+            margin-top: 20px;
+        }
+
+        .confirmation-box p {
+            color: #808080;
+            margin-bottom: 30px;
+        }
+
+        .info-card {
+            background-color: #25262B;
+            border: 1px solid #2A2B30;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+
+        .info-card .card-title {
+            color: #FFFFFF;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .info-row .label {
+            color: #808080;
+        }
+
+        .info-row .value {
+            font-weight: 600;
+        }
+
+        .order-details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .order-details-table th, .order-details-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #2A2B30;
+        }
+
+        .order-details-table th {
+            color: #FFFFFF;
+            font-weight: 600;
+        }
+
+        .total-row strong {
+            color: #DF3B34;
+            font-size: 20px;
+        }
+
+        .btn-custom-primary {
+            background-color: #DF3B34;
+            color: #FFFFFF;
+            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            border: none;
+        }
+
+        .btn-custom-primary:hover {
+            background-color: #FF7B6E;
+        }
+
+        .btn-custom-secondary {
+            background-color: transparent;
+            color: #EEEEEE;
+            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            border: 1px solid #2A2B30;
+            transition: all 0.3s;
+        }
+
+        .btn-custom-secondary:hover {
+            background-color: #2A2B30;
+            color: #FFFFFF;
+        }
+
+    </style>
+}
+
+<div class="confirmation-container">
+    <div class="confirmation-box">
+        <div class="icon">
+            <i class="bi bi-check-circle-fill"></i>
+        </div>
+        <h2>Đặt hàng thành công!</h2>
+        <p>Cảm ơn bạn đã đặt hàng. Chúng tôi sẽ xử lý đơn hàng của bạn sớm nhất có thể.</p>
+        <div class="d-flex justify-content-center gap-3">
+             <a href="@Url.Action("Index", "Home")" class="btn-custom-primary">
+                <i class="bi bi-house"></i> Về trang chủ
+            </a>
+            <a href="@Url.Action("Index", "Product")" class="btn-custom-secondary">
+                <i class="bi bi-bag"></i> Tiếp tục mua hàng
+            </a>
+        </div>
+    </div>
+
+    <div class="info-card mt-4">
+        <h5 class="card-title">Thông tin đơn hàng</h5>
+        <div class="info-row">
+            <span class="label">Mã đơn hàng:</span>
+            <span class="value">@Model.OrderNumber</span>
+        </div>
+        <div class="info-row">
+            <span class="label">Ngày đặt:</span>
+            <span class="value">@Model.OrderDate.ToString("dd/MM/yyyy HH:mm")</span>
+        </div>
+        <div class="info-row">
+            <span class="label">Trạng thái:</span>
+            <span class="value"><span class="badge bg-warning text-dark">@Model.TrangThaiDonHang</span></span>
+        </div>
+    </div>
+
+    <div class="info-card">
+        <h5 class="card-title">Thông tin nhận hàng</h5>
+        <div class="info-row">
+            <span class="label">Người nhận:</span>
+            <span class="value">@Model.TenNguoiNhan</span>
+        </div>
+        <div class="info-row">
+            <span class="label">Số điện thoại:</span>
+            <span class="value">@Model.SoDienThoai</span>
+        </div>
+        <div class="info-row">
+            <span class="label">Địa chỉ:</span>
+            <span class="value">@Model.DiaChiGiaoHang</span>
+        </div>
+        @if (!string.IsNullOrEmpty(Model.GhiChu))
+        {
+            <div class="info-row">
+                <span class="label">Ghi chú:</span>
+                <span class="value">@Model.GhiChu</span>
+            </div>
+        }
+    </div>
+
+    <div class="info-card">
+        <h5 class="card-title">Chi tiết đơn hàng</h5>
+        <table class="order-details-table">
+            <thead>
+                <tr>
+                    <th>Sản phẩm</th>
+                    <th class="text-center">Số lượng</th>
+                    <th class="text-end">Đơn giá</th>
+                    <th class="text-end">Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td>@item.TenSanPham</td>
+                        <td class="text-center">@item.SoLuong</td>
+                        <td class="text-end">@item.Gia.ToString("N0") đ</td>
+                        <td class="text-end">@item.ThanhTien.ToString("N0") đ</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr class="total-row">
+                    <td colspan="3" class="text-end"><strong>Tổng cộng:</strong></td>
+                    <td class="text-end"><strong>@Model.TongTien.ToString("N0") đ</strong></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

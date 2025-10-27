@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D52721A4-98B1-4B63-A89C-6C8AB6084F4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BilliardShop.Domain", "src\BilliardShop.Domain\BilliardShop.Domain.csproj", "{23C27AF8-A67B-496E-AC83-279D952B65A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BilliardShop.Application", "src\BilliardShop.Application\BilliardShop.Application.csproj", "{CFAE35E7-29A0-4F01-B4FD-E00F34E0C39D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BilliardShop.Infrastructure", "src\BilliardShop.Infrastructure\BilliardShop.Infrastructure.csproj", "{AD84F456-EDC1-47AA-802D-D91649B0B8AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BilliardShop.Web", "src\BilliardShop.Web\BilliardShop.Web.csproj", "{C0687D34-809C-4B70-863F-B939A94CEBEA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23C27AF8-A67B-496E-AC83-279D952B65A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23C27AF8-A67B-496E-AC83-279D952B65A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23C27AF8-A67B-496E-AC83-279D952B65A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23C27AF8-A67B-496E-AC83-279D952B65A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFAE35E7-29A0-4F01-B4FD-E00F34E0C39D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFAE35E7-29A0-4F01-B4FD-E00F34E0C39D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFAE35E7-29A0-4F01-B4FD-E00F34E0C39D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFAE35E7-29A0-4F01-B4FD-E00F34E0C39D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD84F456-EDC1-47AA-802D-D91649B0B8AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD84F456-EDC1-47AA-802D-D91649B0B8AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD84F456-EDC1-47AA-802D-D91649B0B8AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD84F456-EDC1-47AA-802D-D91649B0B8AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0687D34-809C-4B70-863F-B939A94CEBEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0687D34-809C-4B70-863F-B939A94CEBEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0687D34-809C-4B70-863F-B939A94CEBEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0687D34-809C-4B70-863F-B939A94CEBEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1D10249-23DE-4F13-AB46-9B470C40F9CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1D10249-23DE-4F13-AB46-9B470C40F9CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1D10249-23DE-4F13-AB46-9B470C40F9CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1D10249-23DE-4F13-AB46-9B470C40F9CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF9329A6-D749-4EEE-941B-CA6DA435DB60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF9329A6-D749-4EEE-941B-CA6DA435DB60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF9329A6-D749-4EEE-941B-CA6DA435DB60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF9329A6-D749-4EEE-941B-CA6DA435DB60}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{23C27AF8-A67B-496E-AC83-279D952B65A5} = {D52721A4-98B1-4B63-A89C-6C8AB6084F4B}
+		{CFAE35E7-29A0-4F01-B4FD-E00F34E0C39D} = {D52721A4-98B1-4B63-A89C-6C8AB6084F4B}
+		{AD84F456-EDC1-47AA-802D-D91649B0B8AA} = {D52721A4-98B1-4B63-A89C-6C8AB6084F4B}
+		{C0687D34-809C-4B70-863F-B939A94CEBEA} = {D52721A4-98B1-4B63-A89C-6C8AB6084F4B}
+	EndGlobalSection
+EndGlobal

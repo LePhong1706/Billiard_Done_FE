@@ -1,0 +1,10 @@
+.claude
+.gemini
+.specify
+specs
+Template
+
+[Bb]in/
+[Oo]bj/
+*.gz
+

@@ -1,0 +1,26 @@
+.product-recommendations {
+  display: block;
+  z-index:0;
+  position: relative;
+}
+
+.product-recommendations:not(.product-recommendations--loaded) {
+  padding: 0;
+  margin: 0;
+}
+
+
+.product-recommendations__heading {
+  margin: 0;
+  margin-bottom: 3rem;
+    /* font-weight: 600; */
+}
+
+/* .product-recommendations .swiper-button-next, .product-recommendations .swiper-button-prev{top:36%;transform:translateY(-50%);-webkit-transform:translateY(-50%);} */
+
+
+@media screen and (min-width: 768px) {
+  .product-recommendations__heading {
+  font-size: var(--font-h2-size); margin-bottom: 5rem;
+  }
+}

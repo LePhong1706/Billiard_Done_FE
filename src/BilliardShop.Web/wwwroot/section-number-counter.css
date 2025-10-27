@@ -1,0 +1,62 @@
+.number-counter-section.grid--1-col-desktop { display: grid;  grid-template-columns: repeat(1,1fr);}
+.number-counter-section.grid--2-col-desktop { display: grid;  grid-template-columns: repeat(2,1fr);}
+.number-counter-section.grid--3-col-desktop { display: grid;  grid-template-columns: repeat(3,1fr);}
+.number-counter-section.grid--4-col-desktop { display: grid; grid-template-columns: repeat(4,1fr);}
+.number-counter-section.grid--5-col-desktop {  display: grid; grid-template-columns: repeat(5,1fr);}
+.number-counter-section.grid--6-col-desktop { display: grid; grid-template-columns: repeat(6,1fr);}
+.number-counter-section.grid{
+  --grid-desktop-horizontal-spacing: 0;
+  --grid-desktop-vertical-spacing: 0;
+}
+.number-counter-block.column-alignment-center{ align-items: center;  text-align:center;}
+.number-counter-block.column-alignment-left{text-align:left;align-items: flex-start;}
+.title-wrapper-with-link.title-wrapper--self-padded-mobile.title-wrapper--no-top-margin.content-align--center { text-align: center;}
+.title-wrapper-with-link.title-wrapper--self-padded-mobile.title-wrapper--no-top-margin.content-align--left { text-align: left;}
+.number-counter-icon img.support-block-card__image{width:100px; height:auto;}
+.number-counter-block{display: flex; flex-direction: column;}
+
+.number-counter-section{ align-items:flex-start;}
+.number-counter-block .counter-value{margin:0;}
+.number-counter-block  .number-counter-title{margin:0; font-weight: var(--font-heading-weight);}
+.number-counter-block .number-counter-description{margin:0;}
+.number-counter-section.list .number-counter-block{ flex-direction: row;display:flex;align-items: center;}
+.number-counter-section.list .number-counter-block .number-counter-icon{padding-right:20px;}
+.number-counter-block .number-counter-content > *:not(:last-child){margin:0 0 10px;}
+ .number-counter-section.grid  .number-counter-block .number-counter-content{margin-top:10px}
+.number-counter-block .number-counter-content h3.counter-value {font-weight: var(--font-heading-weight);}
+
+@media screen and (max-width: 1440px){
+.number-counter-section.grid--6-col-desktop { display: grid;  grid-template-columns: repeat(4,1fr);}  
+}
+@media screen and (max-width: 1199px){
+.number-counter-section.grid--5-col-desktop { display: grid;  grid-template-columns: repeat(3,1fr);}
+.number-counter-section.grid--6-col-desktop { display: grid;  grid-template-columns: repeat(3,1fr);}  
+}
+
+@media screen and (max-width: 990px){
+.number-counter-section.grid--3-col-desktop { display: grid;  grid-template-columns: repeat(2,1fr);}
+.number-counter-section.grid--4-col-desktop{display: grid;  grid-template-columns: repeat(2,1fr);}
+}
+@media screen and (max-width: 749px){
+.number-counter-section.grid--3-col-desktop { display: grid;  grid-template-columns: repeat(2,1fr);}
+.number-counter-section.grid--4-col-desktop{display: grid;  grid-template-columns: repeat(2,1fr);}
+.number-counter-section.grid--5-col-desktop { display: grid;  grid-template-columns: repeat(2,1fr);} 
+.number-counter-section.grid--6-col-desktop { display: grid;  grid-template-columns: repeat(2,1fr);}   
+  
+.number-counter-section.grid--3-col-desktop .number-counter-block:last-child,
+.number-counter-section.grid--5-col-desktop .number-counter-block:last-child{left:50%;position:relative;} 
+}
+@media screen and (max-width: 576px){
+.number-counter-section.grid--3-col-desktop, .number-counter-section.grid--4-col-desktop,
+.number-counter-section.grid--5-col-desktop, .number-counter-section.grid--6-col-desktop { display: grid;  grid-template-columns: repeat(1,1fr);} 
+  
+ .number-counter-section.list{grid-template-columns: repeat(1,1fr);} 
+ .number-counter-section.list.grid--3-col-desktop .number-counter-block:last-child,
+ .number-counter-section.grid--5-col-desktop .number-counter-block:last-child{left:0; }
+  .number-counter-section.list .number-counter-block{justify-content: center;}
+}
+
+@media screen and (max-width: 400px){
+  .number-counter-section.grid--3-col-desktop { display: grid;  grid-template-columns: repeat(1,1fr);}
+  .number-counter-section.grid--3-col-desktop .number-counter-block:last-child{left:0;}
+}
